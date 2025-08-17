@@ -167,7 +167,7 @@ export default function BlogPage() {
   const totalPages = Math.ceil(totalPosts / postsPerPage);
 
   return (
-    <div className="min-h-screen font-sans relative">
+    <div className="min-h-screen relative">
       {/* Tombol toggle tema di pojok kanan atas */}
       <div className="absolute top-4 right-4 z-20">
         <ThemeToggle />
