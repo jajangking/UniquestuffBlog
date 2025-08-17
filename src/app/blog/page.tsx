@@ -84,7 +84,7 @@ export default function BlogPage() {
   // useEffect untuk mengambil data ketika currentPage atau searchQuery berubah
   useEffect(() => {
     fetchPosts();
-  }, [currentPage, searchQuery]);
+}, [currentPage, searchQuery]);
   
   // useEffect untuk mengambil histori pencarian dari localStorage
   useEffect(() => {
@@ -256,7 +256,7 @@ export default function BlogPage() {
                   <p className="text-xl font-bold">Waduh, ada yang nggak beres nih! 🫠</p>
                 </div>
                 <p className="sketch-paragraph mb-6" style={{ fontFamily: "'Kalam', cursive" }}>
-                  Kayaknya sistem lagi bermasalah deh, coba deh pencet tombol "Cari Artikel" di bawah ini biar bisa ketemu artikelnya! 
+                  Kayaknya sistem lagi bermasalah deh, coba deh pencet tombol &quot;Cari Artikel&quot; di bawah ini biar bisa ketemu artikelnya! 
                   Jangan lupa berdoa ya biar cepat ketemu! 😅
                 </p>
                 <button 

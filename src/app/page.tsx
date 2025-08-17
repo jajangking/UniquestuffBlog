@@ -28,7 +28,7 @@ export default function Home() {
         
         <div className="max-w-4xl mx-auto">
           <nav className="hand-drawn-border rounded-2xl p-6 mb-12">
-            <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
               <li className="hand-drawn-border rounded-xl p-4 transform rotate-1 hover:rotate-0 transition-transform duration-300">
                 <Link 
                   href="/makanin" 
@@ -67,6 +67,16 @@ export default function Home() {
                 >
                   <h2 className="text-2xl font-bold mb-2 sketch-line" style={{ fontFamily: "'Kalam', cursive" }}>Admin Panel</h2>
                   <p style={{ fontFamily: "'Kalam', cursive" }}>Kelola konten situs</p>
+                </Link>
+              </li>
+              <li className="hand-drawn-border rounded-xl p-4 transform rotate-1 hover:rotate-0 transition-transform duration-300">
+                <Link 
+                  href="/game" 
+                  className="block text-center"
+                  style={{ fontFamily: "'Kalam', cursive" }}
+                >
+                  <h2 className="text-2xl font-bold mb-2 sketch-line" style={{ fontFamily: "'Kalam', cursive" }}>Games</h2>
+                  <p style={{ fontFamily: "'Kalam', cursive" }}>Mainkan game seru</p>
                 </Link>
               </li>
             </ul>
