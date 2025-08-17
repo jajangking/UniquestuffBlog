@@ -108,7 +108,7 @@ export default function BlogPostPage() {
         <div className="max-w-4xl mx-auto">
           <article className="hand-drawn-border rounded-2xl p-8">
             <header className="mb-8">
-              <h1 className="text-4xl font-bold mb-4 sketch-heading" style={{ fontFamily: "'Kalam', cursive", fontWeight: 'bold' }}>
+              <h1 className="text-4xl font-bold mb-4 sketch-heading text-center" style={{ fontFamily: "'Kalam', cursive", fontWeight: 'bold' }}>
                 {post.title}
               </h1>
               <div className="flex items-center text-sm mb-4">
