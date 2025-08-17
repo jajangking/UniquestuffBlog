@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { ThemeToggle } from '../components/theme-toggle';
 import { useAuth } from '../auth-context';
 
@@ -41,9 +42,6 @@ export default function ResetPasswordPage() {
 
     try {
       // Gunakan fungsi updatePassword dari auth-context
-      const urlParams = new URLSearchParams(window.location.search);
-      const email = urlParams.get('email');
-      
       const success = await updatePassword(password);
       if (success) {
         setMessage('Password berhasil diubah. Anda akan dialihkan ke halaman login.');
@@ -90,23 +88,23 @@ export default function ResetPasswordPage() {
               )}
               
               <div className="mt-8 text-center">
-                <a 
+                <Link 
                   href="/login" 
                   className="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg mr-4 sketch-line"
                   style={{ fontFamily: "'Kalam', cursive" }}
                 >
                   Kembali ke Login
-                </a>
+                </Link>
               </div>
               
               <div className="mt-4 text-center">
-                <a
+                <Link
                   href="/"
                   className="inline-block bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg sketch-line"
                   style={{ fontFamily: "'Kalam', cursive" }}
                 >
                   Kembali ke Beranda
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -175,7 +173,7 @@ export default function ResetPasswordPage() {
                   <input
                     type="password"
                     id="confirmPassword"
-                    className="w-full px-4 py-2 border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border-2 border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Konfirmasi password baru Anda"
                     style={{ fontFamily: "'Kalam', cursive" }}
                     value={confirmPassword}
@@ -186,7 +184,7 @@ export default function ResetPasswordPage() {
                 
                 <button
                   type="submit"
-                  className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-50 focus:ring-offset-2"
+                  className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                   style={{ fontFamily: "'Kalam', cursive" }}
                   disabled={isSubmitting}
                 >
@@ -196,23 +194,23 @@ export default function ResetPasswordPage() {
             )}
             
             <div className="mt-8 text-center">
-              <a 
+              <Link 
                 href="/login" 
                 className="inline-block bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg mr-4 sketch-line"
                 style={{ fontFamily: "'Kalam', cursive" }}
               >
                 Kembali ke Login
-              </a>
+              </Link>
             </div>
             
             <div className="mt-4 text-center">
-              <a
+              <Link
                 href="/"
                 className="inline-block bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg sketch-line"
                 style={{ fontFamily: "'Kalam', cursive" }}
               >
                 Kembali ke Beranda
-              </a>
+              </Link>
             </div>
           </div>
         </div>

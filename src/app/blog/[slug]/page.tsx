@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useRouter, useParams } from 'next/navigation';
+import Link from 'next/link';
 import { ThemeToggle } from '../../components/theme-toggle';
 import { supabase } from '../../../lib/supabaseClient';
 
@@ -11,7 +12,7 @@ type BlogPost = {
   title: string;
   content: string;
   excerpt: string;
- author: string;
+  author: string;
   created_at: string;
   updated_at: string;
   published: boolean;
@@ -26,13 +27,7 @@ export default function BlogPostPage() {
   const params = useParams();
   const { slug } = params;
 
-  useEffect(() => {
-    if (slug) {
-      fetchPost();
-    }
-  }, [slug]);
-
-  const fetchPost = async () => {
+  const fetchPost = useCallback(async () => {
     try {
       setLoading(true);
       const { data, error } = await supabase
@@ -56,7 +51,13 @@ export default function BlogPostPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [router, slug]);
+
+  useEffect(() => {
+    if (slug) {
+      fetchPost();
+    }
+  }, [slug, fetchPost]);
 
   if (loading) {
     return (
@@ -121,7 +122,7 @@ export default function BlogPostPage() {
                   {post.tags.map((tag, index) => (
                     <span 
                       key={index} 
-                      className="px-3 py-1 bg-blue-50 text-blue-400 rounded-full text-sm sketch-heading"
+                      className="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-sm sketch-heading"
                       style={{ fontFamily: "'Kalam', cursive", fontWeight: 'bold' }}
                     >
                       {tag}
@@ -138,25 +139,25 @@ export default function BlogPostPage() {
           </article>
           
           <div className="mt-8 text-center">
-            <a
+            <Link
               href="/blog"
               className="inline-block bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg sketch-line"
               style={{ fontFamily: "'Kalam', cursive", fontWeight: 'bold' }}
             >
               ← Kembali ke Blog
-            </a>
+            </Link>
           </div>
         </div>
       </main>
       
       <div className="text-center my-4">
-        <a
+        <Link
           href="/"
           className="inline-block bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg sketch-line transition duration-300 ease-in-out transform hover:scale-105"
           style={{ fontFamily: "'Kalam', cursive", fontWeight: 'bold' }}
         >
           Kembali ke Beranda
-        </a>
+        </Link>
       </div>
       
       <footer className="w-full text-center py-6">

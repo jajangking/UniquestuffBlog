@@ -3,11 +3,24 @@
 import { useState, useEffect } from 'react';
 import { supabase, checkSupabaseConnection } from '../../lib/supabaseClient';
 
+// Definisikan tipe untuk user
+type User = {
+  id: string;
+  email: string;
+  // Tambahkan properti lain yang diperlukan sesuai kebutuhan
+};
+
+// Definisikan tipe untuk informasi konfigurasi
+type ConfigInfo = {
+  url: string | undefined;
+  anonKeyLength: number;
+};
+
 export default function DebugPage() {
   const [connectionStatus, setConnectionStatus] = useState<string>('Unknown');
   const [authStatus, setAuthStatus] = useState<string>('Unknown');
-  const [user, setUser] = useState<any>(null);
-  const [configInfo, setConfigInfo] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
+  const [configInfo, setConfigInfo] = useState<ConfigInfo | null>(null);
 
   useEffect(() => {
     checkConnection();
@@ -32,7 +45,10 @@ export default function DebugPage() {
       const { data: { session } } = await supabase.auth.getSession();
       if (session) {
         setAuthStatus('Authenticated');
-        setUser(session.user);
+        setUser({
+          id: session.user.id,
+          email: session.user.email || ''
+        });
       } else {
         setAuthStatus('Not authenticated');
         setUser(null);
@@ -110,5 +126,5 @@ export default function DebugPage() {
         </div>
       </div>
     </div>
- );
+  );
 }

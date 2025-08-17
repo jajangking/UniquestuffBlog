@@ -1,38 +1,25 @@
 "use client";
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter, useParams } from 'next/navigation';
+import Link from 'next/link';
 import { ThemeToggle } from '../../../../components/theme-toggle';
 import { ProtectedRoute } from '../../../../components/protected-route';
 import { supabase } from '../../../../../lib/supabaseClient';
 import { useAuth } from '../../../../auth-context';
 import EditorToolbar from '../../../../components/editor-toolbar';
 
-// Definisikan tipe untuk blog post
-type BlogPost = {
-  id: string;
-  title: string;
-  content: string;
-  excerpt: string;
- author: string;
-  created_at: string;
-  updated_at: string;
-  published: boolean;
-  slug: string;
-  tags: string[];
-};
-
 export default function EditBlogPostPage() {
   const [title, setTitle] = useState('');
   const [excerpt, setExcerpt] = useState('');
-  const [content, setContent] = useState('');
+ const [content, setContent] = useState('');
   const [author, setAuthor] = useState('');
   const [tags, setTags] = useState('');
   const [published, setPublished] = useState(false);
   const [imageUrl, setImageUrl] = useState('');
   const [videoUrl, setVideoUrl] = useState('');
   const [links, setLinks] = useState([{ text: '', url: '' }]);
-  const [loading, setLoading] = useState(true);
+ const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const router = useRouter();
   const params = useParams();
@@ -74,14 +61,7 @@ export default function EditBlogPostPage() {
     return text;
   };
 
-  useEffect(() => {
-    // Hanya fetch post jika pengguna terautentikasi dan id tersedia
-    if (isAuthenticated && id) {
-      fetchPost();
-    }
-  }, [isAuthenticated, id]);
-
-  const fetchPost = async () => {
+  const fetchPost = useCallback(async () => {
     try {
       setLoading(true);
       const { data, error } = await supabase
@@ -109,7 +89,14 @@ export default function EditBlogPostPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);
+
+  useEffect(() => {
+    // Hanya fetch post jika pengguna terautentikasi dan id tersedia
+    if (isAuthenticated && id) {
+      fetchPost();
+    }
+  }, [isAuthenticated, id, fetchPost]);
 
   const extractMediaFromContent = (content: string) => {
     // Ekstrak imageUrl dari tag img
@@ -146,7 +133,7 @@ export default function EditBlogPostPage() {
     setContent(cleanContent.trim());
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+ const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSaving(true);
 
@@ -176,7 +163,7 @@ export default function EditBlogPostPage() {
       // Tambahkan link jika ada
       if (links.length > 0 && links.some(link => link.text && link.url)) {
         formattedContent += '\n<div class="mt-6">';
-        links.forEach((link, index) => {
+        links.forEach((link) => {
           if (link.text && link.url) {
             formattedContent += `<p><a href="${link.url}" target="_blank" class="text-blue-500 hover:underline">${link.text}</a></p>`;
           }
@@ -476,13 +463,13 @@ export default function EditBlogPostPage() {
         </main>
         
         <div className="text-center my-4">
-          <a
+          <Link
             href="/admin/blog"
             className="inline-block bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg sketch-line"
             style={{ fontFamily: "'Kalam', cursive" }}
           >
             Kembali ke Kelola Artikel
-          </a>
+          </Link>
         </div>
         
         <footer className="text-center py-6 relative z-10">
@@ -490,5 +477,5 @@ export default function EditBlogPostPage() {
         </footer>
       </div>
     </ProtectedRoute>
- );
+  );
 }

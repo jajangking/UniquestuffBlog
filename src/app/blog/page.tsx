@@ -14,13 +14,13 @@ type BlogPost = {
   author: string;
   created_at: string;
   updated_at: string;
- published: boolean;
+  published: boolean;
   slug: string;
- tags: string[];
+  tags: string[];
 };
 
 export default function BlogPage() {
- const [activeTab, setActiveTab] = useState('latest');
+  const [activeTab, setActiveTab] = useState('latest');
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -197,13 +197,13 @@ export default function BlogPage() {
       </main>
       
       <div className="text-center my-4">
-        <a
+        <Link
           href="/"
           className="inline-block bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg sketch-line transition duration-300 ease-in-out transform hover:scale-105"
           style={{ fontFamily: "'Kalam', cursive" }}
         >
           Kembali ke Beranda
-        </a>
+        </Link>
       </div>
       
       <footer className="w-full text-center py-6">

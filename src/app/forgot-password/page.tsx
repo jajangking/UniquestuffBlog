@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { ThemeToggle } from '../components/theme-toggle';
 import { useAuth } from '../auth-context';
 
@@ -10,7 +10,6 @@ export default function ForgotPasswordPage() {
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const router = useRouter();
   const { resetPassword } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -97,20 +96,20 @@ export default function ForgotPasswordPage() {
             <div className="mt-8 text-center">
               <p className="sketch-line" style={{ fontFamily: "'Kalam', cursive" }}>
                 Ingat password Anda?{' '}
-                <a href="/login" className="font-medium text-blue-600 hover:text-blue-500 sketch-line" style={{ fontFamily: "'Kalam', cursive" }}>
+                <Link href="/login" className="font-medium text-blue-600 hover:text-blue-500 sketch-line" style={{ fontFamily: "'Kalam', cursive" }}>
                   Masuk sekarang
-                </a>
+                </Link>
               </p>
             </div>
             
             <div className="mt-8 text-center">
-              <a 
+              <Link 
                 href="/" 
                 className="inline-block bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg mr-4 sketch-line"
                 style={{ fontFamily: "'Kalam', cursive" }}
               >
                 Kembali ke Beranda
-              </a>
+              </Link>
             </div>
           </div>
         </div>

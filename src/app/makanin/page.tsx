@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { ThemeToggle } from '../components/theme-toggle';
 
 export default function MakaninPage() {
@@ -93,13 +94,13 @@ export default function MakaninPage() {
       </main>
       
       <div className="text-center my-4">
-        <a
+        <Link
           href="/"
           className="inline-block bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg sketch-line transition duration-300 ease-in-out transform hover:scale-105"
           style={{ fontFamily: "'Kalam', cursive" }}
         >
           Kembali ke Beranda
-        </a>
+        </Link>
       </div>
       
       <footer className="w-full text-center py-6">

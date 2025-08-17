@@ -2,6 +2,7 @@
 
 import { useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { ThemeToggle } from '../../../components/theme-toggle';
 import { ProtectedRoute } from '../../../components/protected-route';
 import { supabase } from '../../../../lib/supabaseClient';
@@ -18,7 +19,7 @@ export default function CreateBlogPostPage() {
   const [imageUrl, setImageUrl] = useState('');
   const [videoUrl, setVideoUrl] = useState('');
   const [links, setLinks] = useState([{ text: '', url: '' }]);
-  const [loading, setLoading] = useState(false);
+ const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { isAuthenticated } = useAuth();
   const contentTextareaRef = useRef<HTMLTextAreaElement>(null);
@@ -55,7 +56,7 @@ export default function CreateBlogPostPage() {
     text = text.replace(/~~(.*?)~~/g, '<del>$1</del>');
     
     return text;
-  };
+ };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -87,7 +88,7 @@ export default function CreateBlogPostPage() {
       // Tambahkan link jika ada
       if (links.length > 0 && links.some(link => link.text && link.url)) {
         formattedContent += '\n<div class="mt-6">';
-        links.forEach((link, index) => {
+        links.forEach((link) => {
           if (link.text && link.url) {
             formattedContent += `<p><a href="${link.url}" target="_blank" class="text-blue-500 hover:underline">${link.text}</a></p>`;
           }
@@ -98,7 +99,7 @@ export default function CreateBlogPostPage() {
       // Konversi markdown ke HTML
       formattedContent = convertMarkdownToHtml(formattedContent);
 
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('blog_posts')
         .insert([
           {
@@ -110,8 +111,7 @@ export default function CreateBlogPostPage() {
             published,
             slug
           }
-        ])
-        .select();
+        ]);
 
       if (error) throw error;
 
@@ -141,7 +141,7 @@ export default function CreateBlogPostPage() {
     setLinks(newLinks);
   };
 
- // Tampilkan loading jika status autentikasi belum ditentukan
+  // Tampilkan loading jika status autentikasi belum ditentukan
   if (isAuthenticated === null) {
     return (
       <div className="min-h-screen font-sans relative flex items-center justify-center">
@@ -365,13 +365,13 @@ export default function CreateBlogPostPage() {
         </main>
         
         <div className="text-center my-4">
-          <a
+          <Link
             href="/admin/blog"
             className="inline-block bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg sketch-line"
             style={{ fontFamily: "'Kalam', cursive" }}
           >
             Kembali ke Kelola Artikel
-          </a>
+          </Link>
         </div>
         
         <footer className="text-center py-6 relative z-10">
@@ -379,5 +379,5 @@ export default function CreateBlogPostPage() {
         </footer>
       </div>
     </ProtectedRoute>
- );
+  );
 }

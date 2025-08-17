@@ -3,8 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./theme-context";
 import { AuthProvider } from "./auth-context";
-import { DebugNav } from "./components/debug-nav";
-import { SupabaseDebugInfo } from "./components/supabase-debug-info";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,6 +27,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="light">
       <head>
+        {/* 
+          Font "Kalam" digunakan untuk seluruh aplikasi sebagai font utama.
+          Meskipun ada warning dari ESLint tentang custom fonts, penggunaan ini memang dimaksudkan 
+          untuk memberikan tampilan yang konsisten di seluruh aplikasi.
+        */}
         <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap" rel="stylesheet" />
       </head>
       <body
@@ -38,8 +41,6 @@ export default function RootLayout({
         <ThemeProvider>
           <AuthProvider>
             {children}
-            {/* <DebugNav /> */}
-            {/* <SupabaseDebugInfo /> */}
           </AuthProvider>
         </ThemeProvider>
       </body>

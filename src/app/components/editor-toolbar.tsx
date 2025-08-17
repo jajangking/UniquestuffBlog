@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 
 interface EditorToolbarProps {
   content: string;
@@ -10,7 +10,7 @@ interface EditorToolbarProps {
 
 export default function EditorToolbar({ content, setContent, textareaRef }: EditorToolbarProps) {
   const [fontSize, setFontSize] = useState(16);
-  const [textColor, setTextColor] = useState('#0000');
+  const [textColor, setTextColor] = useState('#000');
   const [bgColor, setBgColor] = useState('#ffffff');
   
   const insertTextAtCursor = (text: string) => {
@@ -256,7 +256,7 @@ export default function EditorToolbar({ content, setContent, textareaRef }: Edit
     document.execCommand('undo', false);
   };
   
- const redo = () => {
+  const redo = () => {
     // Basic redo implementation - in a real app, you'd want a proper redo stack
     document.execCommand('redo', false);
   };
@@ -292,7 +292,7 @@ export default function EditorToolbar({ content, setContent, textareaRef }: Edit
         <button
           type="button"
           onClick={() => formatText('strikethrough')}
-          className="px-2 py-1 bg-gray-800 text-gray-10 hover:bg-gray-900 rounded text-sm line-through"
+          className="px-2 py-1 bg-gray-800 text-gray-100 hover:bg-gray-900 rounded text-sm line-through"
           title="Coret (Strikethrough)"
         >
           S

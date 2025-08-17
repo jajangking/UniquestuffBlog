@@ -1,4 +1,5 @@
 import { ThemeToggle } from './components/theme-toggle';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -29,44 +30,44 @@ export default function Home() {
           <nav className="hand-drawn-border rounded-2xl p-6 mb-12">
             <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <li className="hand-drawn-border rounded-xl p-4 transform rotate-1 hover:rotate-0 transition-transform duration-300">
-                <a 
+                <Link 
                   href="/makanin" 
                   className="block text-center"
                   style={{ fontFamily: "'Kalam', cursive" }}
                 >
                   <h2 className="text-2xl font-bold mb-2 sketch-line" style={{ fontFamily: "'Kalam', cursive" }}>Makanin</h2>
                   <p style={{ fontFamily: "'Kalam', cursive" }}>Temukan resep makanan unik</p>
-                </a>
+                </Link>
               </li>
               <li className="hand-drawn-border rounded-xl p-4 transform -rotate-1 hover:rotate-0 transition-transform duration-300">
-                <a 
+                <Link 
                   href="/store" 
                   className="block text-center"
                   style={{ fontFamily: "'Kalam', cursive" }}
                 >
                   <h2 className="text-2xl font-bold mb-2 sketch-line" style={{ fontFamily: "'Kalam', cursive" }}>Store</h2>
                   <p style={{ fontFamily: "'Kalam', cursive" }}>Beli barang lucu dan unik</p>
-                </a>
+                </Link>
               </li>
               <li className="hand-drawn-border rounded-xl p-4 transform rotate-2 hover:rotate-0 transition-transform duration-30">
-                <a 
+                <Link 
                   href="/blog" 
                   className="block text-center"
                   style={{ fontFamily: "'Kalam', cursive" }}
                 >
                   <h2 className="text-2xl font-bold mb-2 sketch-line" style={{ fontFamily: "'Kalam', cursive" }}>Blog</h2>
                   <p style={{ fontFamily: "'Kalam', cursive" }}>Baca artikel menarik</p>
-                </a>
+                </Link>
               </li>
               <li className="hand-drawn-border rounded-xl p-4 transform -rotate-2 hover:rotate-0 transition-transform duration-300">
-                <a 
+                <Link 
                   href="/admin" 
                   className="block text-center"
                   style={{ fontFamily: "'Kalam', cursive" }}
                 >
                   <h2 className="text-2xl font-bold mb-2 sketch-line" style={{ fontFamily: "'Kalam', cursive" }}>Admin Panel</h2>
                   <p style={{ fontFamily: "'Kalam', cursive" }}>Kelola konten situs</p>
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>

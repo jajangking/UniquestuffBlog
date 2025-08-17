@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { ThemeToggle } from '../components/theme-toggle';
 
 export default function StorePage() {
   const [activeTab, setActiveTab] = useState('products');
   
- return (
+  return (
     <div className="min-h-screen font-sans relative">
       {/* Tombol toggle tema di pojok kanan atas */}
       <div className="absolute top-4 right-4 z-20">
@@ -73,7 +74,7 @@ export default function StorePage() {
                     <h3 className="text-xl font-bold mb-2 sketch-heading" style={{ fontFamily: "'Kalam', cursive" }}>Mug UNIQUESTUFF</h3>
                     <p className="sketch-paragraph" style={{ fontFamily: "'Kalam', cursive" }}>Mug menarik dengan logo UNIQUESTUFF</p>
                     <div className="mt-4 flex justify-between items-center">
-                      <span className="font-bold">Rp 75.00</span>
+                      <span className="font-bold">Rp 75.000</span>
                       <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                         Beli
                       </button>
@@ -114,13 +115,13 @@ export default function StorePage() {
       </main>
       
       <div className="text-center my-4">
-        <a
+        <Link
           href="/"
           className="inline-block bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg sketch-line transition duration-300 ease-in-out transform hover:scale-105"
           style={{ fontFamily: "'Kalam', cursive" }}
         >
           Kembali ke Beranda
-        </a>
+        </Link>
       </div>
       
       <footer className="w-full text-center py-6">

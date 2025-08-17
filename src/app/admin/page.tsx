@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { ThemeToggle } from '../components/theme-toggle';
 import { ProtectedRoute } from '../components/protected-route';
 import { useAuth } from '../auth-context';
@@ -60,13 +61,13 @@ export default function AdminPanel() {
               <div className="hand-drawn-border rounded-xl p-6">
                 <h2 className="text-2xl font-bold mb-4 sketch-line" style={{ fontFamily: "'Kalam', cursive" }}>Kelola Artikel</h2>
                 <p className="mb-4" style={{ fontFamily: "'Kalam', cursive" }}>Tambah, edit, atau hapus artikel blog</p>
-                <a
+                <Link
                   href="/admin/blog"
                   className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                   style={{ fontFamily: "'Kalam', cursive" }}
                 >
                   Buka
-                </a>
+                </Link>
               </div>
               
               <div className="hand-drawn-border rounded-xl p-6">
@@ -99,13 +100,13 @@ export default function AdminPanel() {
         </main>
         
         <div className="text-center mb-8">
-          <a
+          <Link
             href="/"
             className="inline-block bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg sketch-line"
             style={{ fontFamily: "'Kalam', cursive" }}
           >
             Kembali ke Beranda
-          </a>
+          </Link>
         </div>
         
         <footer className="text-center py-6 relative z-10">

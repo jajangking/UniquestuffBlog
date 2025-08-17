@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { ThemeToggle } from '../components/theme-toggle';
 import { useAuth } from '../auth-context';
 
@@ -90,7 +91,7 @@ export default function RegisterPage() {
                 <input
                   type="password"
                   id="password"
-                  className="w-full px-4 py-2 border-2 border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="Masukkan password Anda"
                   style={{ fontFamily: "'Kalam', cursive" }}
                   value={password}
@@ -106,7 +107,7 @@ export default function RegisterPage() {
                 <input
                   type="password"
                   id="confirmPassword"
-                  className="w-full px-4 py-2 border-2 border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border-black rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-50"
                   placeholder="Konfirmasi password Anda"
                   style={{ fontFamily: "'Kalam', cursive" }}
                   value={confirmPassword}
@@ -127,20 +128,20 @@ export default function RegisterPage() {
             <div className="mt-8 text-center">
               <p className="sketch-line" style={{ fontFamily: "'Kalam', cursive" }}>
                 Sudah punya akun?{' '}
-                <a href="/login" className="font-medium text-blue-600 hover:text-blue-500 sketch-line" style={{ fontFamily: "'Kalam', cursive" }}>
+                <Link href="/login" className="font-medium text-blue-600 hover:text-blue-500 sketch-line" style={{ fontFamily: "'Kalam', cursive" }}>
                   Masuk sekarang
-                </a>
+                </Link>
               </p>
             </div>
             
             <div className="mt-8 text-center">
-              <a 
+              <Link 
                 href="/" 
                 className="inline-block bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg mr-4 sketch-line"
                 style={{ fontFamily: "'Kalam', cursive" }}
               >
                 Kembali ke Beranda
-              </a>
+              </Link>
             </div>
           </div>
         </div>

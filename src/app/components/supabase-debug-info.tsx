@@ -1,11 +1,18 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import { supabase, checkSupabaseConnection } from '../../lib/supabaseClient';
+import { checkSupabaseConnection } from '../../lib/supabaseClient';
+
+// Definisikan tipe untuk informasi konfigurasi
+type ConfigInfo = {
+  url: string | undefined;
+  anonKeyPresent: boolean;
+  anonKeyLength: number;
+};
 
 export function SupabaseDebugInfo() {
   const [connectionStatus, setConnectionStatus] = useState<string>('Unknown');
-  const [configInfo, setConfigInfo] = useState<any>(null);
+  const [configInfo, setConfigInfo] = useState<ConfigInfo | null>(null);
   const [showDetails, setShowDetails] = useState<boolean>(false);
 
   useEffect(() => {

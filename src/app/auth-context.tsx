@@ -59,7 +59,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
- const login = async (email: string, password: string): Promise<boolean> => {
+  const login = async (email: string, password: string): Promise<boolean> => {
     try {
       console.log('Attempting login with email:', email);
       
@@ -139,7 +139,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   
   const resetPassword = async (email: string): Promise<boolean> => {
     try {
-      const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+      const { error } = await supabase.auth.resetPasswordForEmail(email, {
         redirectTo: 'http://localhost:300/reset-password',
       });
   
@@ -157,7 +157,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   
   const updatePassword = async (newPassword: string): Promise<boolean> => {
     try {
-      const { data, error } = await supabase.auth.updateUser({
+      const { error } = await supabase.auth.updateUser({
         password: newPassword,
       });
   
